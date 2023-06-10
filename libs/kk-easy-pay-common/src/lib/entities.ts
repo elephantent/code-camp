@@ -15,12 +15,25 @@ export interface Patient {
 }
 
 export interface Abrechnung {
+  id: number;
   patient: Patient;
   monat: number;
-  posten: Posten[];
 }
 
 export interface Posten {
   paket: LeistungsPaket;
   anzahl: number;
+}
+
+export interface AbrechnungsEingang {
+  id: number;
+  patient: Patient;
+  monat: number;
+  posten: Posten[];
+}
+
+export interface PostenRow {
+  paket: LeistungsPaket;
+  anzahl: number;
+  abrechnungsID: number;
 }

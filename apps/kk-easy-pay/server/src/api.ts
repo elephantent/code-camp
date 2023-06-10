@@ -15,12 +15,10 @@ export class ApiHandlers {
 
     res.json(pakete);
   }
-
-  async handleStorePosten(_req: express.Request, res: express.Response) {
+  async handleCreateAbrechnung(_req: express.Request, res: express.Response) {
     await this.knex.transaction(async (trx) => {
-      new AppD(trx).storePosten(_req);
+      new AppDbService(trx).createAbrechnung(_req);
       res.sendStatus(200);
     });
-
   }
 }

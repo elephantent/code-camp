@@ -1,5 +1,5 @@
 import { knex, Knex } from 'knex';
-import { LeistungsPaket, Posten } from '@pct/kk-easy-pay-common';
+import { Abrechnung, AbrechnungsEingang, LeistungsPaket, Posten } from '@pct/kk-easy-pay-common';
 import pg from 'pg';
 
 if (pg.types == null) {
@@ -46,6 +46,7 @@ export async function initKnex() {
 
 export const APP_TABLES = {
   LEISTUNGS_PAKET: 'leistungs_paket',
+  ABRECHNUNG: 'abrechnung',
   POSTEN: 'posten',
 };
 
@@ -55,6 +56,16 @@ export class AppDbService {
   async loadPakete() {
     const rows = await this.trx<LeistungsPaket>(APP_TABLES.LEISTUNGS_PAKET);
     return rows;
+  }
+
+  async createAbrechnung(body: AbrechnungsEingang) {
+    const abrechnungsID = await this.trx<Abrechnung>(APP_TABLES.ABRECHNUNG)
+      .insert({id: body.id, monat: body.monat, patient: body.patient})
+      .returning('id');
+    for (let i = 0; i < body.posten.length; i++) {
+      await this.trx<Posten>(APP_TABLES.POSTEN).insert({paket: body.posten[i].paket, anzahl: body.posten[i].anzahl});
+    };
+    return abrechnungsID;
   }
 
   async storePosten(_req) {
