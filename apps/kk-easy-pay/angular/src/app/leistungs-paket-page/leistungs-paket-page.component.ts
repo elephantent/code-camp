@@ -15,9 +15,14 @@ import { LeistungsPaket } from '@pct/kk-easy-pay-common';
 })
 export class LeistungsPaketPageComponent implements OnInit {
   pakete: LeistungsPaket[] = [];
+  onClick = false;
   constructor(private entry: EntryService) {}
 
   async ngOnInit() {
     this.pakete = await this.entry.listPakete();
+  }
+
+  clickHandler() {
+    this.onClick = true;
   }
 }

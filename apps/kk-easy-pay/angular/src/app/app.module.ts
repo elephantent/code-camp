@@ -6,12 +6,14 @@ import { appRoutes } from './app.routes';
 import { HttpClientModule } from '@angular/common/http';
 import { LeistungsPaketDisplayComponent } from './leistungs-paket-display/leistungs-paket-display.component';
 import { LeistungsPaketPageComponent } from './leistungs-paket-page/leistungs-paket-page.component';
+import { AbrechnungFormComponent } from './abrechnung-form/abrechnung-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LeistungsPaketDisplayComponent,
     LeistungsPaketPageComponent,
+    AbrechnungFormComponent,
   ],
   imports: [
     BrowserModule,
