@@ -3,4 +3,7 @@
   *ngFor="let paket of pakete"
   [paket]="paket"
 ></pct-leistungs-paket-display> -->
-<pct-abrechnung-form></pct-abrechnung-form>
+
+<button (click)="clickHandler()">Abrechnungsprozess starten</button>
+
+<pct-abrechnung-form *ngIf="onClick"></pct-abrechnung-form>
