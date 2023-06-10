@@ -7,6 +7,12 @@
     {{ priceEuro }}
   </div>
   <div>
-    <input type="text" placeholder="Anzahl" />
+    <input
+      type="number"
+      placeholder="Anzahl"
+      name="anzahl"
+      [ngModel]="anzahl"
+      (ngModelChange)="anzahlChanged.emit($event)"
+    />
   </div>
 </div>

@@ -2,25 +2,37 @@
 <form>
   <label for="monat">Monat</label>
 
-  <select name="monat" id="monat">
-    <option value="01">Januar</option>
-    <option value="02">Februar</option>
-    <option value="03">März</option>
-    <option value="04">April</option>
-    <option value="05">Mai</option>
-    <option value="06">Juni</option>
-    <option value="07">Juli</option>
-    <option value="08">August</option>
-    <option value="09">September</option>
+  <select
+    [ngModel]="month"
+    (ngModelChange)="month = $event"
+    name="monat"
+    id="monat"
+  >
+    <option value="1">Januar</option>
+    <option value="2">Februar</option>
+    <option value="3">März</option>
+    <option value="4">April</option>
+    <option value="5">Mai</option>
+    <option value="6">Juni</option>
+    <option value="7">Juli</option>
+    <option value="8">August</option>
+    <option value="9">September</option>
     <option value="10">Oktober</option>
     <option value="11">November</option>
     <option value="12">Dezember</option>
   </select>
   <br />
-  <input type="text" placeholder="Versichertennummer" />
+  <input
+    type="text"
+    placeholder="Versichertennummer"
+    name="versichtertennummer"
+    [(ngModel)]="versichtertennummer"
+  />
   <pct-leistungs-paket-display
-    *ngFor="let paket of pakete"
+    *ngFor="let paket of pakete; let i = index"
     [paket]="paket"
+    [anzahl]="anzahl[i]"
+    (anzahlChanged)="anzahl[i] = $event"
   ></pct-leistungs-paket-display>
 </form>
-<button>Abrechnung absenden</button>
+<button (click)="handleClick()">Abrechnung absenden</button>

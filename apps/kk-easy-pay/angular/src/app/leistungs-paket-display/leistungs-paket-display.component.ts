@@ -1,6 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { LeistungsPaket } from '@pct/kk-easy-pay-common'
-
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { LeistungsPaket } from '@pct/kk-easy-pay-common';
 
 @Component({
   selector: 'pct-leistungs-paket-display',
@@ -21,6 +20,8 @@ export class LeistungsPaketDisplayComponent {
   };
 
   get priceEuro() {
-    return (this.paket.price /100).toFixed(2) + '€';
+    return (this.paket.price / 100).toFixed(2) + '€';
   }
+  @Input() anzahl = 0;
+  @Output() anzahlChanged = new EventEmitter();
 }
