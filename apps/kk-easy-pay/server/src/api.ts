@@ -2,6 +2,7 @@ import { Knex } from 'knex';
 import { AppDbService } from './db';
 import * as express from 'express';
 
+// knex ist die Verbindung zur Datenbank
 export class ApiHandlers {
   constructor(private knex: Knex) {}
 
