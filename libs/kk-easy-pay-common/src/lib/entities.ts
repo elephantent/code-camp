@@ -7,3 +7,20 @@ export interface LeistungsPaket {
    */
   price: number;
 }
+
+export interface Patient {
+  versicherungsnummer: string;
+  firstname: string;
+  lastname: string;
+}
+
+export interface Abrechnung {
+  patient: Patient;
+  monat: number;
+  posten: Posten[];
+}
+
+export interface Posten {
+  paket: LeistungsPaket;
+  anzahl: number;
+}

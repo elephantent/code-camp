@@ -13,4 +13,8 @@ export class ApiHandlers {
 
     res.json(pakete);
   }
+
+  async handleStorePosten(_req: express.Request, res: express.Response) {
+     res.sendStatus(200);
+  }
 }

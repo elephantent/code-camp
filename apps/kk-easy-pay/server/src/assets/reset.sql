@@ -37,3 +37,34 @@ insert into leistungs_paket (nr, description, price) VALUES (28, 'Begleitung bei
 insert into leistungs_paket (nr, description, price) VALUES (29, 'Wechseln der Bettwäsche', 514);
 insert into leistungs_paket (nr, description, price) VALUES (30, 'Vorratseinkauf', 1218);
 insert into leistungs_paket (nr, description, price) VALUES (31, 'Erstbesuch', 6431);
+
+drop table if exists patient;
+
+create table patient (
+    versicherungsnummer varchar primary key not null,
+    firstname varchar not null,
+    lastname varchar not null
+);
+
+
+insert into patient (versicherungsnummer, firstname, lastname) VALUES ('ABC23467PQR', 'Heinz', 'Müller');
+insert into patient (versicherungsnummer, firstname, lastname) VALUES ('39405DLKELS', 'Herta', 'Maier');
+insert into patient (versicherungsnummer, firstname, lastname) VALUES ('39405LEKELS', 'Monika', 'Musterfrau');
+insert into patient (versicherungsnummer, firstname, lastname) VALUES ('DLEK21346OO', 'Max', 'Mustermann');
+
+drop table if exists abrechnung;
+
+create table abrechnung (
+    id SERIAL PRIMARY KEY,
+    patient varchar REFERENCES patient (versicherungsnummer) not null,
+    monat integer not null
+);
+
+drop table if exists posten;
+
+create table posten (
+    id SERIAL PRIMARY KEY,
+    paket integer REFERENCES leistungs_paket (nr) not null,
+    anzahl integer not null,
+    abrechnung integer REFERENCES abrechnung(id)
+);
